@@ -1,5 +1,6 @@
 package com.flightapp.flightserver.controller;
 
+import com.flightapp.flightserver.model.Task;
 import com.flightapp.flightserver.service.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -21,9 +22,13 @@ public class TaskController {
 
     }
     @GetMapping("/fetch-task")
-    public List<String> fetchTask(){
+    public List<Task> fetchTask(){
         return taskService.fetchTasks();
     }
 
+    @DeleteMapping("/delete-tasks")
+    public void deleteTask(@RequestBody String taskName){
+        taskService.deleteTask(taskName);
+    }
 }
 
